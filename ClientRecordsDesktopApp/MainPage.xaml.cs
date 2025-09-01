@@ -1,24 +1,18 @@
-﻿namespace ClientRecordsDesktopApp
-{
-    public partial class MainPage : ContentPage
-    {
-        int count = 0;
+﻿using ClientRecordsDesktopApp.Views;
 
-        public MainPage()
-        {
+namespace ClientRecordsDesktopApp {
+    public partial class MainPage : ContentPage {
+        private readonly IServiceProvider _serviceProvider;
+
+        public MainPage(IServiceProvider serviceProvider) {
             InitializeComponent();
+            _serviceProvider = serviceProvider;
         }
 
-        private void OnCounterClicked(object sender, EventArgs e)
-        {
-            count++;
-
-            if (count == 1)
-                CounterBtn.Text = $"Clicked {count} time";
-            else
-                CounterBtn.Text = $"Clicked {count} times";
-
-            SemanticScreenReader.Announce(CounterBtn.Text);
+        private void OnCounterClicked(object sender, EventArgs e) {
+            var page = _serviceProvider.GetRequiredService<ClientDetailPage>();
+            Window secondWindow = new Window(page);
+            App.Current?.OpenWindow(secondWindow);
         }
     }
 

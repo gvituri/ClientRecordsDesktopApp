@@ -5,7 +5,6 @@ using UraniumUI.Material;
 using InputKit;
 using ClientRecordsDesktopApp.ViewModels;
 using ClientRecordsDesktopApp.Views;
-using CommunityToolkit.Maui;
 
 namespace ClientRecordsDesktopApp
 {
@@ -21,7 +20,6 @@ namespace ClientRecordsDesktopApp
                     handlers.AddInputKitHandlers();
                 })
                 .UseUraniumUI()
-                .UseMauiCommunityToolkit()
                 .UseUraniumUIMaterial()
                 .ConfigureFonts(fonts =>
                 {
