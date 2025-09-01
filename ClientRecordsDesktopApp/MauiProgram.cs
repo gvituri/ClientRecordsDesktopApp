@@ -3,6 +3,8 @@ using Microsoft.Extensions.Logging;
 using UraniumUI;
 using UraniumUI.Material;
 using InputKit;
+using ClientRecordsDesktopApp.ViewModels;
+using ClientRecordsDesktopApp.Views;
 
 namespace ClientRecordsDesktopApp
 {
@@ -28,6 +30,9 @@ namespace ClientRecordsDesktopApp
 #if DEBUG
             builder.Logging.AddDebug();
 #endif
+
+            builder.Services.AddTransient<ClientDetailPage>();
+            builder.Services.AddTransient<ClientDetailViewModel>();
 
             return builder.Build();
         }
