@@ -1,4 +1,5 @@
 ﻿using ClientRecordsDesktopApp.Models;
+using ClientRecordsDesktopApp.Services;
 using ClientRecordsDesktopApp.Services.Interfaces;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
@@ -9,7 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace ClientRecordsDesktopApp.ViewModels {
-    public partial  class ClientDetailViewModel : ObservableObject {
+    public partial class ClientDetailViewModel : ObservableObject {
         private readonly IClientDatabaseService _clientDb;
         private readonly IDialogService _dialogService;
 
@@ -53,6 +54,8 @@ namespace ClientRecordsDesktopApp.ViewModels {
             } else {
                 await _clientDb.UpdateClientAsync(Client);
             }
+
+            WindowManagementHelper.CloseWindowById(_windowId);
         }
 
         [RelayCommand]
@@ -72,7 +75,7 @@ namespace ClientRecordsDesktopApp.ViewModels {
                 IsEditMode = false;
 
                 await _dialogService.ShowMessageAsync(
-                    _windowId, 
+                    _windowId,
                     "Deleted",
                     "Client successfully deleted.");
             }
