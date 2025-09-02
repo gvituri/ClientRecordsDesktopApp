@@ -4,6 +4,7 @@
              x:Class="ClientRecordsDesktopApp.Views.ClientsDashboardPage"
              xmlns:vm="clr-namespace:ClientRecordsDesktopApp.ViewModels"
              xmlns:models="clr-namespace:ClientRecordsDesktopApp.Models"
+             xmlns:icons="clr-namespace:UraniumUI.Icons.MaterialSymbols;assembly=UraniumUI.Icons.MaterialSymbols"
              x:DataType="vm:ClientsDashboardViewModel"
              Title="">
 
@@ -18,13 +19,13 @@
 
                 <Button Text="New Client"
                         StyleClass="FilledButton"
-                        Style="{StaticResource ConfirmButton}"
                         Command="{Binding CreateNewClientCommand}"
                         Grid.Column="1"/>
             </Grid>
 
             <CollectionView ItemsSource="{Binding Clients}"
                             SelectionMode="Single"
+                            SelectedItem="{Binding SelectedClient}"
                             SelectionChangedCommand="{Binding OpenClientDetailCommand}"
                             SelectionChangedCommandParameter="{Binding Path=SelectedItem, Source={RelativeSource Self}}">
                 <CollectionView.ItemsLayout>
@@ -35,7 +36,7 @@
                     <DataTemplate>
                         <Border Stroke="Transparent"
                                 Padding="15,5">
-                            <Grid ColumnDefinitions="2*,*,2*">
+                            <Grid ColumnDefinitions="2*,*,2*,100">
                                 <Label Grid.Column="0"
                                        Text="Full Name"
                                        FontSize="18">
@@ -56,11 +57,11 @@
                     <DataTemplate x:DataType="models:Client">
                         <Border Padding="15,0,15,15"
                                 Stroke="Transparent">
-                            <Grid ColumnDefinitions="2*,*,2*"
+                            <Grid ColumnDefinitions="2*,*,2*,100"
                                   RowDefinitions="1,*"
                                   RowSpacing="15">
                                 <BoxView Grid.Column="0"
-                                         Grid.ColumnSpan="3"
+                                         Grid.ColumnSpan="4"
                                          Grid.Row="0"/>
 
                                 <Label Grid.Column="0"
@@ -84,6 +85,29 @@
                                        Grid.Row="1"
                                        Text="{Binding Adress}"
                                        FontSize="18" />
+
+                                <StackLayout Orientation="Horizontal"
+                                             Grid.Column="3"
+                                             Grid.Row="1"
+                                             Spacing="10">
+                                    <Image>
+                                        <Image.Source>
+                                            <FontImageSource FontFamily="MaterialSharp"
+                                                             Glyph="{x:Static icons:MaterialSharp.Visibility}"
+                                                             Color="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource PrimaryDark}}" />
+                                        </Image.Source>
+                                    </Image>
+
+                                    <BoxView WidthRequest="1" />
+                                    
+                                    <Image>
+                                        <Image.Source>
+                                            <FontImageSource FontFamily="MaterialSharp"
+                                                             Glyph="{x:Static icons:MaterialSharp.Delete}"
+                                                             Color="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource PrimaryDark}}" />
+                                        </Image.Source>
+                                    </Image>
+                                </StackLayout>
                             </Grid>
                         </Border>
                     </DataTemplate>

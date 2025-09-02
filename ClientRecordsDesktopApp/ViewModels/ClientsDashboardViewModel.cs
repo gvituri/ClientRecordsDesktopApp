@@ -32,6 +32,9 @@ namespace ClientRecordsDesktopApp.ViewModels {
         [ObservableProperty]
         private ObservableCollection<Client> clients = new();
 
+        [ObservableProperty]
+        Client selectedClient = null;
+
         [RelayCommand]
         public async Task LoadClientsAsync() {
             var allClients = await _clientDb.GetClientsAsync();
@@ -47,11 +50,12 @@ namespace ClientRecordsDesktopApp.ViewModels {
         }
 
         [RelayCommand]
-        public async Task OpenClientDetailAsync(Client selectedClient) {
-            if (selectedClient == null)
+        public async Task OpenClientDetailAsync(Client selectedListItem) {
+            if (selectedListItem == null)
                 return;
 
-            await OpenClientDetailPageAsync(selectedClient.Id);
+            await OpenClientDetailPageAsync(selectedListItem.Id);
+            SelectedClient = null;
         }
 
         private async Task OpenClientDetailPageAsync(int clientID) {
