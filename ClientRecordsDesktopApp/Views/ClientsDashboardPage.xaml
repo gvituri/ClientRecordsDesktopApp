@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ClientRecordsDesktopApp.Views.ClientsDashboardPage"
+             xmlns:vm="clr-namespace:ClientRecordsDesktopApp.ViewModels"
+             xmlns:models="clr-namespace:ClientRecordsDesktopApp.Models"
+             x:DataType="vm:ClientsDashboardViewModel"
+             Title="">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="30,0"
+                             Spacing="25">
+
+            <Grid ColumnDefinitions="*,200">
+                <Label Text="Clients"
+                       Style="{StaticResource Headline}"
+                       Grid.Column="0"/>
+
+                <Button Text="New Client"
+                        StyleClass="FilledButton"
+                        Style="{StaticResource ConfirmButton}"
+                        Command="{Binding CreateNewClientCommand}"
+                        Grid.Column="1"/>
+            </Grid>
+
+            <CollectionView ItemsSource="{Binding Clients}"
+                            SelectionMode="Single"
+                            SelectionChangedCommand="{Binding OpenClientDetailCommand}"
+                            SelectionChangedCommandParameter="{Binding Path=SelectedItem, Source={RelativeSource Self}}">
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout Orientation="Vertical"
+                                       ItemSpacing="0" />
+                </CollectionView.ItemsLayout>
+                <CollectionView.HeaderTemplate>
+                    <DataTemplate>
+                        <Border Stroke="Transparent"
+                                Padding="15,5">
+                            <Grid ColumnDefinitions="2*,*,2*">
+                                <Label Grid.Column="0"
+                                       Text="Full Name"
+                                       FontSize="18">
+                                </Label>
+
+                                <Label Grid.Column="1"
+                                       Text="Age"
+                                       FontSize="18" />
+
+                                <Label Grid.Column="2"
+                                       Text="Adress"
+                                       FontSize="18" />
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </CollectionView.HeaderTemplate>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="models:Client">
+                        <Border Padding="15,0,15,15"
+                                Stroke="Transparent">
+                            <Grid ColumnDefinitions="2*,*,2*"
+                                  RowDefinitions="1,*"
+                                  RowSpacing="15">
+                                <BoxView Grid.Column="0"
+                                         Grid.ColumnSpan="3"
+                                         Grid.Row="0"/>
+
+                                <Label Grid.Column="0"
+                                       Grid.Row="1"
+                                       FontSize="18">
+                                    <Label.FormattedText>
+                                        <FormattedString>
+                                            <Span Text="{Binding Name}" />
+                                            <Span Text=" " />
+                                            <Span Text="{Binding LastName}" />
+                                        </FormattedString>
+                                    </Label.FormattedText>
+                                </Label>
+
+                                <Label Grid.Column="1"
+                                       Grid.Row="1"
+                                       Text="{Binding Age}"
+                                       FontSize="18" />
+
+                                <Label Grid.Column="2"
+                                       Grid.Row="1"
+                                       Text="{Binding Adress}"
+                                       FontSize="18" />
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

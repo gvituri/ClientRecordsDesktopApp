@@ -42,6 +42,8 @@ namespace ClientRecordsDesktopApp
 
             builder.Services.AddTransient<ClientDetailPage>();
             builder.Services.AddTransient<ClientDetailViewModel>();
+            builder.Services.AddTransient<ClientsDashboardPage>();
+            builder.Services.AddTransient<ClientsDashboardViewModel>();
 
             return builder.Build();
         }

@@ -9,7 +9,7 @@ namespace ClientRecordsDesktopApp.Models {
     public class Client {
         [PrimaryKey]
         [AutoIncrement]
-        public int ID { get; set; }
+        public int Id { get; set; }
 
         public string Name { get; set; }
 

@@ -49,7 +49,7 @@ namespace ClientRecordsDesktopApp.ViewModels {
 
         [RelayCommand]
         public async Task SaveAsync() {
-            if (Client.ID <= 0) {
+            if (Client.Id <= 0) {
                 await _clientDb.CreateClientAsync(Client);
             } else {
                 await _clientDb.UpdateClientAsync(Client);
@@ -60,7 +60,7 @@ namespace ClientRecordsDesktopApp.ViewModels {
 
         [RelayCommand]
         public async Task DeleteAsync() {
-            if (Client == null || Client.ID <= 0)
+            if (Client == null || Client.Id <= 0)
                 return;
 
             bool confirm = await _dialogService.ShowConfirmationAsync(
