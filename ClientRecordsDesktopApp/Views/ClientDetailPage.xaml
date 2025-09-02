@@ -14,11 +14,39 @@
             <StackLayout Spacing="25"
                          WidthRequest="500">
 
-                <Label Text="Client Registration"
-                       Style="{StaticResource Headline}"/>
+                <Label Style="{StaticResource Headline}">
+                    <Label.Triggers>
+                        <DataTrigger TargetType="Label"
+                                     Binding="{Binding IsEditMode}"
+                                     Value="True">
+                            <Setter Property="Text"
+                                    Value="Client Details" />
+                        </DataTrigger>
+                        <DataTrigger TargetType="Label"
+                                     Binding="{Binding IsEditMode}"
+                                     Value="False">
+                            <Setter Property="Text"
+                                    Value="Client Registration" />
+                        </DataTrigger>
+                    </Label.Triggers>
+                </Label>
 
-                <Label Text="Please fill out the information below to register a new customer."
-                       Style="{StaticResource Paragraph}" />
+                <Label Style="{StaticResource Paragraph}">
+                    <Label.Triggers>
+                        <DataTrigger TargetType="Label"
+                                     Binding="{Binding IsEditMode}"
+                                     Value="True">
+                            <Setter Property="Text"
+                                    Value="Alter the form and submit it to update a client's details." />
+                        </DataTrigger>
+                        <DataTrigger TargetType="Label"
+                                     Binding="{Binding IsEditMode}"
+                                     Value="False">
+                            <Setter Property="Text"
+                                    Value="Please fill out the information below to register a new client." />
+                        </DataTrigger>
+                    </Label.Triggers>
+                </Label>
 
                 <Grid ColumnDefinitions="*,*"
                       ColumnSpacing="25">
@@ -55,6 +83,7 @@
                             StyleClass="FilledButton"
                             Style="{StaticResource DangerButton}"
                             Command="{Binding DeleteCommand}"
+                            IsVisible="{Binding IsEditMode}"
                             Grid.Column="0"/>
 
                     <Button Text="Submit"

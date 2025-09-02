@@ -1,9 +1,11 @@
 ﻿using ClientRecordsDesktopApp.Models;
+using ClientRecordsDesktopApp.Models.Messages;
 using ClientRecordsDesktopApp.Services;
 using ClientRecordsDesktopApp.Services.Interfaces;
 using ClientRecordsDesktopApp.Views;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using CommunityToolkit.Mvvm.Messaging;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
@@ -68,6 +70,12 @@ namespace ClientRecordsDesktopApp.ViewModels {
                 WindowSizingHelper.WindowPosition.CenterScreen);
 
             App.Current?.OpenWindow(secondWindow);
+
+            if (!WeakReferenceMessenger.Default.IsRegistered<ClientCollectionChangedMessage>(this)) {
+                WeakReferenceMessenger.Default.Register<ClientCollectionChangedMessage>(this, async (r, m) =>{
+                    await LoadClientsAsync();
+                });
+            }
         }
     }
 }

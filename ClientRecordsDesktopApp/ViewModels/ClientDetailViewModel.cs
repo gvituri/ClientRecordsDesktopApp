@@ -1,8 +1,10 @@
 ﻿using ClientRecordsDesktopApp.Models;
+using ClientRecordsDesktopApp.Models.Messages;
 using ClientRecordsDesktopApp.Services;
 using ClientRecordsDesktopApp.Services.Interfaces;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using CommunityToolkit.Mvvm.Messaging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -55,6 +57,8 @@ namespace ClientRecordsDesktopApp.ViewModels {
                 await _clientDb.UpdateClientAsync(Client);
             }
 
+
+            WeakReferenceMessenger.Default.Send(new ClientCollectionChangedMessage(true));
             WindowManagementHelper.CloseWindowById(_windowId);
         }
 
@@ -71,13 +75,9 @@ namespace ClientRecordsDesktopApp.ViewModels {
 
             if (confirm) {
                 await _clientDb.DeleteClientAsync(Client);
-                Client = null;
-                IsEditMode = false;
 
-                await _dialogService.ShowMessageAsync(
-                    _windowId,
-                    "Deleted",
-                    "Client successfully deleted.");
+                WeakReferenceMessenger.Default.Send(new ClientCollectionChangedMessage(true));
+                WindowManagementHelper.CloseWindowById(_windowId);
             }
         }
     }
