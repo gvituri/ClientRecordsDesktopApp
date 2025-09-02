@@ -12,11 +12,7 @@ namespace ClientRecordsDesktopApp
         protected override Window CreateWindow(IActivationState? activationState)
         {
             return new Window(new AppShell()) {
-                Title = "Client Records Desktop App",
-                Width = DeviceDisplay.MainDisplayInfo.Width / DeviceDisplay.MainDisplayInfo.Density,
-                Height = DeviceDisplay.MainDisplayInfo.Height / DeviceDisplay.MainDisplayInfo.Density,
-                X = 0,
-                Y = 0
+                Title = "Client Records Desktop App"
             };
         }
     }

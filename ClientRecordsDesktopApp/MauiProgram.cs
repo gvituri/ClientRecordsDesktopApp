@@ -1,8 +1,6 @@
 ﻿using InputKit.Handlers;
 using Microsoft.Extensions.Logging;
 using UraniumUI;
-using UraniumUI.Material;
-using InputKit;
 using ClientRecordsDesktopApp.ViewModels;
 using ClientRecordsDesktopApp.Views;
 

@@ -8,6 +8,8 @@ namespace ClientRecordsDesktopApp {
         public MainPage(IServiceProvider serviceProvider) {
             InitializeComponent();
             _serviceProvider = serviceProvider;
+
+            WindowSizingHelper.MaximizeWindow(App.Current!.Windows[0]);
         }
 
         private void OnCounterClicked(object sender, EventArgs e) {
@@ -15,9 +17,11 @@ namespace ClientRecordsDesktopApp {
             Window secondWindow = new Window(page) {
                 Title = "Client Detail",
             };
+            
             WindowSizingHelper.SetWindowSizeAndPosition(secondWindow,
                 WindowSizingHelper.WindowSize.ThreeQuartersScreen,
                 WindowSizingHelper.WindowPosition.CenterScreen);
+
             App.Current?.OpenWindow(secondWindow);
         }
     }
