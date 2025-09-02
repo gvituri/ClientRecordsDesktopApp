@@ -94,7 +94,7 @@
                                         <Image.Source>
                                             <FontImageSource FontFamily="MaterialSharp"
                                                              Glyph="{x:Static icons:MaterialSharp.Visibility}"
-                                                             Color="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource PrimaryDark}}" />
+                                                             Color="{StaticResource Gray200}" />
                                         </Image.Source>
                                     </Image>
 
@@ -104,7 +104,7 @@
                                         <Image.Source>
                                             <FontImageSource FontFamily="MaterialSharp"
                                                              Glyph="{x:Static icons:MaterialSharp.Delete}"
-                                                             Color="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource PrimaryDark}}" />
+                                                             Color="{StaticResource Gray200}" />
                                         </Image.Source>
                                     </Image>
                                 </StackLayout>
