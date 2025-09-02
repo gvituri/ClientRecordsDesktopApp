@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace ClientRecordsDesktopApp.Services {
-    public class ClientDatabaseService : IClientDatabaseService {
+    public class ClientDatabaseService : IClientDatabaseService, IAsyncDisposable {
         private SQLiteAsyncConnection _db;
         private readonly string _dbPath;
 
@@ -46,6 +46,11 @@ namespace ClientRecordsDesktopApp.Services {
             client.Name = client.Name?.Trim();
             client.LastName = client.LastName?.Trim();
             client.Adress = client.Adress?.Trim();
+        }
+
+        public async ValueTask DisposeAsync() {
+            await _db.CloseAsync();
+            _db = null;
         }
     }
 }

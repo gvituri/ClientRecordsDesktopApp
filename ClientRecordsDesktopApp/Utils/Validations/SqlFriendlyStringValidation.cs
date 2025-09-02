@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ClientRecordsDesktopApp.Utils.Validations
 {
-    class SqlFriendlyStringValidation : IValidation {
+    public class SqlFriendlyStringValidation : IValidation {
         public string Message { get; set; } = "This field should not contain ', \",\\.";
 
         public bool Validate(object value) {
