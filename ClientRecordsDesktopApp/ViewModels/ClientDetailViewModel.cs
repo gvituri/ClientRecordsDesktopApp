@@ -25,9 +25,11 @@ namespace ClientRecordsDesktopApp.ViewModels {
         [ObservableProperty]
         private bool isEditMode;
 
-        public async Task InitializeAsync(int clientId) {
+        Guid _windowId;
+
+        public async Task InitializeAsync(int clientId, Guid windowId) {
             await _clientDb.InitializeAsync();
-            var clients = await _clientDb.GetClientsAsync();
+            _windowId = windowId;
 
             if (clientId > 0) {
                 IsEditMode = true;
@@ -59,6 +61,7 @@ namespace ClientRecordsDesktopApp.ViewModels {
                 return;
 
             bool confirm = await _dialogService.ShowConfirmationAsync(
+                _windowId,
                 "Confirm Deletion",
                 $"Are you sure you want to delete client \"{Client.Name}\"?"
             );
@@ -68,7 +71,10 @@ namespace ClientRecordsDesktopApp.ViewModels {
                 Client = null;
                 IsEditMode = false;
 
-                await _dialogService.ShowMessageAsync("Deleted", "Client successfully deleted.");
+                await _dialogService.ShowMessageAsync(
+                    _windowId, 
+                    "Deleted",
+                    "Client successfully deleted.");
             }
         }
     }

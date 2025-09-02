@@ -17,19 +17,20 @@ namespace ClientRecordsDesktopApp {
         private void CounterBtn_Clicked(object sender, EventArgs e) {
             var page = _serviceProvider.GetRequiredService<ClientDetailPage>();
 
+
+            Window secondWindow = new Window(page) {
+                Title = "Client Detail",
+            };
+
             if (page.BindingContext is ClientDetailViewModel vm) {
                 System.Threading.Tasks.Task.Factory.StartNew(() =>
                 {
                     MainThread.BeginInvokeOnMainThread( async() =>
                     {
-                        await vm.InitializeAsync(0);
+                        await vm.InitializeAsync(0, secondWindow.Id);
                     });
                 });
             }
-
-            Window secondWindow = new Window(page) {
-                Title = "Client Detail",
-            };
 
             WindowSizingHelper.SetWindowSizeAndPosition(secondWindow,
                 WindowSizingHelper.WindowSize.ThreeQuartersScreen,
@@ -41,19 +42,19 @@ namespace ClientRecordsDesktopApp {
         private void OpenExistingClient_Clicked(object sender, EventArgs e) {
             var page = _serviceProvider.GetRequiredService<ClientDetailPage>();
 
+            Window secondWindow = new Window(page) {
+                Title = "Client Detail",
+            };
+
             if (page.BindingContext is ClientDetailViewModel vm) {
                 System.Threading.Tasks.Task.Factory.StartNew(() =>
                 {
                     MainThread.BeginInvokeOnMainThread(async () =>
                     {
-                        await vm.InitializeAsync(1);
+                        await vm.InitializeAsync(1, secondWindow.Id);
                     });
                 });
             }
-
-            Window secondWindow = new Window(page) {
-                Title = "Client Detail",
-            };
 
             WindowSizingHelper.SetWindowSizeAndPosition(secondWindow,
                 WindowSizingHelper.WindowSize.ThreeQuartersScreen,
