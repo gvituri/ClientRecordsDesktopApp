@@ -29,13 +29,23 @@ namespace ClientRecordsDesktopApp.Services {
 
         public Task<Client> GetClientAsync(int id)
             => _db.FindAsync<Client>(id);
-        public Task<int> CreateClientAsync(Client client)
-            => _db.InsertAsync(client);
+        public Task<int> CreateClientAsync(Client client) {
+            NormalizeClient(client);
+            return _db.InsertAsync(client);
+        }
 
-        public Task<int> UpdateClientAsync(Client client)
-            => _db.UpdateAsync(client);
+        public Task<int> UpdateClientAsync(Client client) {
+            NormalizeClient(client);
+            return _db.UpdateAsync(client);
+        }
 
         public Task<int> DeleteClientAsync(Client client)
             => _db.DeleteAsync(client);
+
+        private void NormalizeClient(Client client) {
+            client.Name = client.Name?.Trim();
+            client.LastName = client.LastName?.Trim();
+            client.Adress = client.Adress?.Trim();
+        }
     }
 }
