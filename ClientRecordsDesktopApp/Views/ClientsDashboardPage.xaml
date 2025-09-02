@@ -20,7 +20,14 @@
                 <Button Text="New Client"
                         StyleClass="FilledButton"
                         Command="{Binding CreateNewClientCommand}"
-                        Grid.Column="1"/>
+                        Grid.Column="1">
+                    <Button.ImageSource>
+                        <FontImageSource FontFamily="MaterialSharp"
+                                         Size="20"
+                                         Glyph="{x:Static icons:MaterialSharp.Add}"
+                                         Color="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource PrimaryDarkText}}" />
+                    </Button.ImageSource>
+                </Button>
             </Grid>
 
             <CollectionView ItemsSource="{Binding Clients}"

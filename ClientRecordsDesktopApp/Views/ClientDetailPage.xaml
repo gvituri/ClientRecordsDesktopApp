@@ -7,6 +7,7 @@
              xmlns:material="http://schemas.enisn-projects.io/dotnet/maui/uraniumui/material"
              xmlns:validation="clr-namespace:InputKit.Shared.Validations;assembly=InputKit.Maui"
              xmlns:customValidation="clr-namespace:ClientRecordsDesktopApp.Utils.Validations"
+             xmlns:icons="clr-namespace:UraniumUI.Icons.MaterialSymbols;assembly=UraniumUI.Icons.MaterialSymbols"
              xmlns:input="clr-namespace:InputKit.Shared.Controls;assembly=InputKit.Maui"
              Title="ClientDetailPage">
     <ScrollView>
@@ -88,13 +89,27 @@
                             Style="{StaticResource DangerButton}"
                             Command="{Binding DeleteCommand}"
                             IsVisible="{Binding IsEditMode}"
-                            Grid.Column="0" />
+                            Grid.Column="0">
+                        <Button.ImageSource>
+                            <FontImageSource FontFamily="MaterialSharp"
+                                             Size="20"
+                                             Glyph="{x:Static icons:MaterialSharp.Delete}"
+                                             Color="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource PrimaryDarkText}}" />
+                        </Button.ImageSource>
+                    </Button>
 
                     <Button Text="Submit"
                             input:FormView.IsSubmitButton="True"
                             StyleClass="FilledButton"
                             Style="{StaticResource ConfirmButton}"
-                            Grid.Column="1" />
+                            Grid.Column="1">
+                        <Button.ImageSource>
+                            <FontImageSource FontFamily="MaterialSharp"
+                                             Size="20"
+                                             Glyph="{x:Static icons:MaterialSharp.Save}"
+                                             Color="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource PrimaryDarkText}}" />
+                        </Button.ImageSource>
+                    </Button>
                 </Grid>
             </StackLayout>
         </input:FormView>
