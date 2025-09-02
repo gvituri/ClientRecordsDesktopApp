@@ -3,6 +3,8 @@ using Microsoft.Extensions.Logging;
 using UraniumUI;
 using ClientRecordsDesktopApp.ViewModels;
 using ClientRecordsDesktopApp.Views;
+using ClientRecordsDesktopApp.Services.Interfaces;
+using ClientRecordsDesktopApp.Services;
 
 namespace ClientRecordsDesktopApp
 {
@@ -28,6 +30,15 @@ namespace ClientRecordsDesktopApp
 #if DEBUG
             builder.Logging.AddDebug();
 #endif
+
+            string dbPath = Path.Combine(
+            Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),
+            "clients.db3");
+
+            builder.Services.AddSingleton<IClientDatabaseService>(s =>
+                new ClientDatabaseService(dbPath));
+
+            builder.Services.AddSingleton<IDialogService, DialogService>();
 
             builder.Services.AddTransient<ClientDetailPage>();
             builder.Services.AddTransient<ClientDetailViewModel>();

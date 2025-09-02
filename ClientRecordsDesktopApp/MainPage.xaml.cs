@@ -1,5 +1,7 @@
 ﻿using ClientRecordsDesktopApp.Services;
+using ClientRecordsDesktopApp.ViewModels;
 using ClientRecordsDesktopApp.Views;
+using System.Threading.Tasks;
 
 namespace ClientRecordsDesktopApp {
     public partial class MainPage : ContentPage {
@@ -12,12 +14,47 @@ namespace ClientRecordsDesktopApp {
             WindowSizingHelper.MaximizeWindow(App.Current!.Windows[0]);
         }
 
-        private void OnCounterClicked(object sender, EventArgs e) {
+        private void CounterBtn_Clicked(object sender, EventArgs e) {
             var page = _serviceProvider.GetRequiredService<ClientDetailPage>();
+
+            if (page.BindingContext is ClientDetailViewModel vm) {
+                System.Threading.Tasks.Task.Factory.StartNew(() =>
+                {
+                    MainThread.BeginInvokeOnMainThread( async() =>
+                    {
+                        await vm.InitializeAsync(0);
+                    });
+                });
+            }
+
             Window secondWindow = new Window(page) {
                 Title = "Client Detail",
             };
-            
+
+            WindowSizingHelper.SetWindowSizeAndPosition(secondWindow,
+                WindowSizingHelper.WindowSize.ThreeQuartersScreen,
+                WindowSizingHelper.WindowPosition.CenterScreen);
+
+            App.Current?.OpenWindow(secondWindow);
+        }
+
+        private void OpenExistingClient_Clicked(object sender, EventArgs e) {
+            var page = _serviceProvider.GetRequiredService<ClientDetailPage>();
+
+            if (page.BindingContext is ClientDetailViewModel vm) {
+                System.Threading.Tasks.Task.Factory.StartNew(() =>
+                {
+                    MainThread.BeginInvokeOnMainThread(async () =>
+                    {
+                        await vm.InitializeAsync(1);
+                    });
+                });
+            }
+
+            Window secondWindow = new Window(page) {
+                Title = "Client Detail",
+            };
+
             WindowSizingHelper.SetWindowSizeAndPosition(secondWindow,
                 WindowSizingHelper.WindowSize.ThreeQuartersScreen,
                 WindowSizingHelper.WindowPosition.CenterScreen);
