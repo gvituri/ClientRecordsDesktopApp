@@ -6,6 +6,7 @@
              x:DataType="vm:ClientDetailViewModel"
              xmlns:material="http://schemas.enisn-projects.io/dotnet/maui/uraniumui/material"
              xmlns:validation="clr-namespace:InputKit.Shared.Validations;assembly=InputKit.Maui"
+             xmlns:customValidation="clr-namespace:ClientRecordsDesktopApp.Utils.Validations"
              xmlns:input="clr-namespace:InputKit.Shared.Controls;assembly=InputKit.Maui"
              Title="ClientDetailPage">
     <ScrollView>
@@ -68,7 +69,7 @@
                                     Text="{Binding Client.Age}"
                                     Title="Age">
                     <validation:RequiredValidation />
-                    <validation:NumericValidation />
+                    <customValidation:AgeValidation />
                 </material:TextField>
 
                 <material:TextField Title="Adress"
