@@ -1,4 +1,5 @@
-﻿using ClientRecordsDesktopApp.Views;
+﻿using ClientRecordsDesktopApp.Services;
+using ClientRecordsDesktopApp.Views;
 
 namespace ClientRecordsDesktopApp {
     public partial class MainPage : ContentPage {
@@ -11,7 +12,12 @@ namespace ClientRecordsDesktopApp {
 
         private void OnCounterClicked(object sender, EventArgs e) {
             var page = _serviceProvider.GetRequiredService<ClientDetailPage>();
-            Window secondWindow = new Window(page);
+            Window secondWindow = new Window(page) {
+                Title = "Client Detail",
+            };
+            WindowSizingHelper.SetWindowSizeAndPosition(secondWindow,
+                WindowSizingHelper.WindowSize.ThreeQuartersScreen,
+                WindowSizingHelper.WindowPosition.CenterScreen);
             App.Current?.OpenWindow(secondWindow);
         }
     }

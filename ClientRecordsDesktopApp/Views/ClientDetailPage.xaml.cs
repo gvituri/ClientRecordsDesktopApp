@@ -1,3 +1,4 @@
+using ClientRecordsDesktopApp.Services;
 using ClientRecordsDesktopApp.ViewModels;
 
 namespace ClientRecordsDesktopApp.Views;
