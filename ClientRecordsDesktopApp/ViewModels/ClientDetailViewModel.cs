@@ -1,5 +1,5 @@
 ﻿using ClientRecordsDesktopApp.Models;
-using ClientRecordsDesktopApp.Models.Messages;
+using ClientRecordsDesktopApp.Utils.Messages;
 using ClientRecordsDesktopApp.Services;
 using ClientRecordsDesktopApp.Services.Interfaces;
 using CommunityToolkit.Mvvm.ComponentModel;

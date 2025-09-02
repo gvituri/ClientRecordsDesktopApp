@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ClientRecordsDesktopApp.Models.Messages {
+namespace ClientRecordsDesktopApp.Utils.Messages {
     internal class ClientCollectionChangedMessage : ValueChangedMessage<bool> {
         public ClientCollectionChangedMessage(bool valor) : base(valor) {
         }
