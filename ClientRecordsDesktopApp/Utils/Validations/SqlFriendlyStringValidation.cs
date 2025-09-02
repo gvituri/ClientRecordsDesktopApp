@@ -7,15 +7,14 @@ using System.Threading.Tasks;
 
 namespace ClientRecordsDesktopApp.Utils.Validations
 {
-    class AgeValidation : IValidation {
-        public string Message { get; set; } = "This field should contain only positive values between 1 and 120.";
+    class SqlFriendlyStringValidation : IValidation {
+        public string Message { get; set; } = "This field should not contain ', \",\\.";
 
         public bool Validate(object value) {
             if (value is string text && !string.IsNullOrWhiteSpace(text)) {
-                if (int.TryParse(text, out int number)) {
-                    return number >= 1 && number <= 120;
-                }
+                return !(text.Contains("'") || text.Contains("\"") || text.Contains("\\"));
             }
+
             return false;
         }
     }

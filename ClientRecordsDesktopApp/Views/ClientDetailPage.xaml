@@ -56,12 +56,14 @@
                                         Text="{Binding Client.Name}"
                                         Grid.Column="0">
                         <validation:RequiredValidation />
+                        <customValidation:SqlFriendlyStringValidation />
                     </material:TextField>
 
                     <material:TextField Title="Last Name"
                                         Text="{Binding Client.LastName}"
                                         Grid.Column="1">
                         <validation:RequiredValidation />
+                        <customValidation:SqlFriendlyStringValidation />
                     </material:TextField>
                 </Grid>
 
@@ -75,6 +77,7 @@
                 <material:TextField Title="Adress"
                                     Text="{Binding Client.Adress}">
                     <validation:RequiredValidation />
+                    <customValidation:SqlFriendlyStringValidation />
                 </material:TextField>
 
                 <Grid ColumnDefinitions="*,*"
@@ -85,13 +88,13 @@
                             Style="{StaticResource DangerButton}"
                             Command="{Binding DeleteCommand}"
                             IsVisible="{Binding IsEditMode}"
-                            Grid.Column="0"/>
+                            Grid.Column="0" />
 
                     <Button Text="Submit"
                             input:FormView.IsSubmitButton="True"
                             StyleClass="FilledButton"
                             Style="{StaticResource ConfirmButton}"
-                            Grid.Column="1"/>
+                            Grid.Column="1" />
                 </Grid>
             </StackLayout>
         </input:FormView>
