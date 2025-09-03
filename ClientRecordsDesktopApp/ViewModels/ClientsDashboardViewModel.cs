@@ -18,10 +18,14 @@ namespace ClientRecordsDesktopApp.ViewModels {
     public partial class ClientsDashboardViewModel : ObservableObject {
         private readonly IClientDatabaseService _clientDb;
         private readonly IServiceProvider _serviceProvider;
+        private readonly IDialogService _dialogService;
 
-        public ClientsDashboardViewModel(IClientDatabaseService clientDb, IServiceProvider serviceProvider) {
+        public ClientsDashboardViewModel(IClientDatabaseService clientDb,
+            IServiceProvider serviceProvider,
+            IDialogService dialogService) {
             _clientDb = clientDb;
             _serviceProvider = serviceProvider;
+            _dialogService = dialogService;
         }
 
         public async Task InitializeAsync() {
@@ -61,6 +65,13 @@ namespace ClientRecordsDesktopApp.ViewModels {
 
         public async Task AddMockUpClients() {
             if (Clients.Any()) return;
+
+            if (!await _dialogService.ShowConfirmationAsync(
+                App.Current!.Windows[0].Id,
+                "Carregar Mockup",
+                $"Deseja carregar mockup de dados de clientes?"
+            )) return;
+
             var mockClients = new List<Client> {
                     new Client { Name = "João", LastName = "Silva", Age = 30, Adress = "Rua Roma, 123" },
                     new Client { Name = "Maria", LastName = "Oliveira", Age = 25, Adress = "Avenida das Flores, 456" },
