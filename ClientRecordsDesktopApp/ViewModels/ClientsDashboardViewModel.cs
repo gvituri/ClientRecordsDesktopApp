@@ -69,7 +69,7 @@ namespace ClientRecordsDesktopApp.ViewModels {
             if (!await _dialogService.ShowConfirmationAsync(
                 App.Current!.Windows[0].Id,
                 "Carregar Mockup",
-                $"Deseja carregar mockup de dados de clientes?"
+                $"Deseja carregar mockup de clientes?"
             )) return;
 
             var mockClients = new List<Client> {
