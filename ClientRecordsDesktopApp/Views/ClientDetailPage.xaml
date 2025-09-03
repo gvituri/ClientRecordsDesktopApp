@@ -22,13 +22,13 @@
                                      Binding="{Binding IsEditMode}"
                                      Value="True">
                             <Setter Property="Text"
-                                    Value="Client Details" />
+                                    Value="Detalhes do Cliente" />
                         </DataTrigger>
                         <DataTrigger TargetType="Label"
                                      Binding="{Binding IsEditMode}"
                                      Value="False">
                             <Setter Property="Text"
-                                    Value="Client Registration" />
+                                    Value="Registrar Cliente" />
                         </DataTrigger>
                     </Label.Triggers>
                 </Label>
@@ -39,13 +39,13 @@
                                      Binding="{Binding IsEditMode}"
                                      Value="True">
                             <Setter Property="Text"
-                                    Value="Alter the form and submit it to update a client's details." />
+                                    Value="Altere o formulário e salve para atualizar os detalhes do cliente." />
                         </DataTrigger>
                         <DataTrigger TargetType="Label"
                                      Binding="{Binding IsEditMode}"
                                      Value="False">
                             <Setter Property="Text"
-                                    Value="Please fill out the information below to register a new client." />
+                                    Value="Preencha as informações abaixo para registrar um novo cliente." />
                         </DataTrigger>
                     </Label.Triggers>
                 </Label>
@@ -53,38 +53,37 @@
                 <Grid ColumnDefinitions="*,*"
                       ColumnSpacing="25">
 
-                    <material:TextField Title="Name"
+                    <material:TextField Title="Nome"
                                         Text="{Binding Client.Name}"
                                         Grid.Column="0">
-                        <validation:RequiredValidation />
+                        <validation:RequiredValidation Message="Este campo é obrigatório." />
                         <customValidation:SqlFriendlyStringValidation />
                     </material:TextField>
 
-                    <material:TextField Title="Last Name"
+                    <material:TextField Title="Sobrenome"
                                         Text="{Binding Client.LastName}"
                                         Grid.Column="1">
-                        <validation:RequiredValidation />
+                        <validation:RequiredValidation Message="Este campo é obrigatório." />
                         <customValidation:SqlFriendlyStringValidation />
                     </material:TextField>
                 </Grid>
 
-                <material:TextField x:Name="tf_age"
-                                    Text="{Binding Client.Age}"
-                                    Title="Age">
-                    <validation:RequiredValidation />
+                <material:TextField Text="{Binding Client.Age}"
+                                    Title="Idade">
+                    <validation:RequiredValidation Message="Este campo é obrigatório." />
                     <customValidation:AgeValidation />
                 </material:TextField>
 
-                <material:TextField Title="Adress"
+                <material:TextField Title="Endereço"
                                     Text="{Binding Client.Adress}">
-                    <validation:RequiredValidation />
+                    <validation:RequiredValidation Message="Este campo é obrigatório." />
                     <customValidation:SqlFriendlyStringValidation />
                 </material:TextField>
 
                 <Grid ColumnDefinitions="*,*"
                       ColumnSpacing="25">
 
-                    <Button Text="Delete"
+                    <Button Text="Excluir"
                             StyleClass="FilledButton"
                             Style="{StaticResource DangerButton}"
                             Command="{Binding DeleteCommand}"
@@ -98,7 +97,7 @@
                         </Button.ImageSource>
                     </Button>
 
-                    <Button Text="Submit"
+                    <Button Text="Salvar"
                             input:FormView.IsSubmitButton="True"
                             StyleClass="FilledButton"
                             Style="{StaticResource ConfirmButton}"

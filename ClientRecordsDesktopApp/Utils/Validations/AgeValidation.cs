@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace ClientRecordsDesktopApp.Utils.Validations
 {
     public class AgeValidation : IValidation {
-        public string Message { get; set; } = "This field should contain only positive values between 1 and 120.";
+        public string Message { get; set; } = "Este campo só pode conter inteiros positivos entre 1 e 120.";
 
         public bool Validate(object value) {
             if (value is string text && !string.IsNullOrWhiteSpace(text)) {

@@ -69,8 +69,8 @@ namespace ClientRecordsDesktopApp.ViewModels {
 
             bool confirm = await _dialogService.ShowConfirmationAsync(
                 _windowId,
-                "Confirm Deletion",
-                $"Are you sure you want to delete client \"{Client.Name}\"?"
+                "Confirmar Exclusão",
+                $"Tem certeza que deseja excluir o cliente \"{Client.Name} {Client.LastName}\"?"
             );
 
             if (confirm) {

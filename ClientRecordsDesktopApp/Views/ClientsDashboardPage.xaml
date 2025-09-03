@@ -13,11 +13,11 @@
                              Spacing="25">
 
             <Grid ColumnDefinitions="*,200">
-                <Label Text="Clients"
+                <Label Text="Clientes"
                        Style="{StaticResource Headline}"
                        Grid.Column="0"/>
 
-                <Button Text="New Client"
+                <Button Text="Novo Cliente"
                         StyleClass="FilledButton"
                         Command="{Binding CreateNewClientCommand}"
                         Grid.Column="1">
@@ -45,16 +45,16 @@
                                 Padding="15,5">
                             <Grid ColumnDefinitions="2*,*,2*,100">
                                 <Label Grid.Column="0"
-                                       Text="Full Name"
+                                       Text="Nome Completo"
                                        FontSize="18">
                                 </Label>
 
                                 <Label Grid.Column="1"
-                                       Text="Age"
+                                       Text="Idade"
                                        FontSize="18" />
 
                                 <Label Grid.Column="2"
-                                       Text="Adress"
+                                       Text="Endereço"
                                        FontSize="18" />
                             </Grid>
                         </Border>
