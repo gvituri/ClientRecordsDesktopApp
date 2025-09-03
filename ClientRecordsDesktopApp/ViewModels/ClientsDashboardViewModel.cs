@@ -73,15 +73,14 @@ namespace ClientRecordsDesktopApp.ViewModels {
             )) return;
 
             var mockClients = new List<Client> {
-                    new Client { Name = "João", LastName = "Silva", Age = 30, Adress = "Rua Roma, 123" },
-                    new Client { Name = "Maria", LastName = "Oliveira", Age = 25, Adress = "Avenida das Flores, 456" },
-                    new Client { Name = "Pedro", LastName = "Santos", Age = 40, Adress = "Rua Maringá, 789" },
-                    new Client { Name = "Ana", LastName = "Costa", Age = 28, Adress = "Rua Abdala Jabur, 101" },
-                    new Client { Name = "Lucas", LastName = "Ferreira", Age = 35, Adress = "Avenida Celso Garcia Sid, 202" }
-                };
-            foreach (var client in mockClients) {
-                await _clientDb.CreateClientAsync(client);
-            }
+                new Client { Name = "João", LastName = "Silva", Age = 30, Adress = "Rua Roma, 123" },
+                new Client { Name = "Maria", LastName = "Oliveira", Age = 25, Adress = "Avenida das Flores, 456" },
+                new Client { Name = "Pedro", LastName = "Santos", Age = 40, Adress = "Rua Maringá, 789" },
+                new Client { Name = "Ana", LastName = "Costa", Age = 28, Adress = "Rua Abdala Jabur, 101" },
+                new Client { Name = "Lucas", LastName = "Ferreira", Age = 35, Adress = "Avenida Celso Garcia Sid, 202" }
+            };
+
+            await _clientDb.CreateClientRangeAsync(mockClients);
             await LoadClientsAsync();
         }
 

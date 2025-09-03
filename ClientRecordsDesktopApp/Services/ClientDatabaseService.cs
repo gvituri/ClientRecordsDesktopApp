@@ -34,6 +34,14 @@ namespace ClientRecordsDesktopApp.Services {
             return _db.InsertAsync(client);
         }
 
+        public Task<int> CreateClientRangeAsync(List<Client> clients) {
+            foreach (var client in clients) {
+                NormalizeClient(client);
+            }
+            
+            return _db.InsertAllAsync(clients);
+        }
+
         public Task<int> UpdateClientAsync(Client client) {
             NormalizeClient(client);
             return _db.UpdateAsync(client);
