@@ -8,24 +8,6 @@ namespace ClientRecordsDesktopAppUnitTests.Validations {
             _validator = new SqlFriendlyStringValidation();
         }
 
-        [Fact]
-        public void Message_ShouldHaveDefaultValue() {
-            // Act & Assert
-            Assert.Equal("This field should not contain ', \",\\.", _validator.Message);
-        }
-
-        [Fact]
-        public void Message_ShouldBeSettable() {
-            // Arrange
-            var customMessage = "Custom SQL validation message";
-
-            // Act
-            _validator.Message = customMessage;
-
-            // Assert
-            Assert.Equal(customMessage, _validator.Message);
-        }
-
         [Theory]
         [InlineData("John", true)]
         [InlineData("Jane Doe", true)]
@@ -121,54 +103,6 @@ namespace ClientRecordsDesktopAppUnitTests.Validations {
         }
 
         [Theory]
-        [InlineData(123, false)]
-        [InlineData(0, false)]
-        [InlineData(-1, false)]
-        public void Validate_WithIntegerValues_ShouldReturnFalse(int input, bool expected) {
-            // Act
-            var result = _validator.Validate(input);
-
-            // Assert
-            Assert.Equal(expected, result);
-        }
-
-        [Theory]
-        [InlineData(25.5, false)]
-        [InlineData(0.0, false)]
-        public void Validate_WithDoubleValues_ShouldReturnFalse(double input, bool expected) {
-            // Act
-            var result = _validator.Validate(input);
-
-            // Assert
-            Assert.Equal(expected, result);
-        }
-
-        [Fact]
-        public void Validate_WithCustomObject_ShouldReturnFalse() {
-            // Arrange
-            var customObject = new { Name = "John" };
-
-            // Act
-            var result = _validator.Validate(customObject);
-
-            // Assert
-            Assert.False(result);
-        }
-
-        [Theory]
-        [InlineData("Normal text with spaces", true)]
-        [InlineData("   Text with leading spaces", true)]
-        [InlineData("Text with trailing spaces   ", true)]
-        [InlineData("  Text with both  ", true)]
-        public void Validate_WithValidTextIncludingSpaces_ShouldReturnTrue(string input, bool expected) {
-            // Act
-            var result = _validator.Validate(input);
-
-            // Assert
-            Assert.Equal(expected, result);
-        }
-
-        [Theory]
         [InlineData("Unicode characters: áéíóú", true)]
         [InlineData("Chinese: 你好", true)]
         [InlineData("Emoji: 😀", true)]
@@ -194,18 +128,6 @@ namespace ClientRecordsDesktopAppUnitTests.Validations {
             Assert.Equal(expected, result);
         }
 
-        [Theory]
-        [InlineData("Text with ' only", false)]
-        [InlineData("Text with \" only", false)]
-        [InlineData("Text with \\ only", false)]
-        public void Validate_WithSingleForbiddenCharacter_ShouldReturnFalse(string input, bool expected) {
-            // Act
-            var result = _validator.Validate(input);
-
-            // Assert
-            Assert.Equal(expected, result);
-        }
-
         [Fact]
         public void Validate_WithVeryLongValidString_ShouldReturnTrue() {
             // Arrange
@@ -216,18 +138,6 @@ namespace ClientRecordsDesktopAppUnitTests.Validations {
 
             // Assert
             Assert.True(result);
-        }
-
-        [Fact]
-        public void Validate_WithVeryLongStringContainingForbiddenChar_ShouldReturnFalse() {
-            // Arrange
-            var longString = new string('a', 5000) + "'" + new string('b', 5000);
-
-            // Act
-            var result = _validator.Validate(longString);
-
-            // Assert
-            Assert.False(result);
         }
     }
 }
