@@ -62,7 +62,7 @@ namespace ClientRecordsDesktopApp.ViewModels {
             var page = _serviceProvider.GetRequiredService<ClientDetailPage>();
 
             Window secondWindow = new Window(page) {
-                Title = "Client Detail",
+                Title = "Detalhes do Cliente",
             };
 
             if (page.BindingContext is ClientDetailViewModel vm) {

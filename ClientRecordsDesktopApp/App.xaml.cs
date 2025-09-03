@@ -12,7 +12,7 @@ namespace ClientRecordsDesktopApp
         protected override Window CreateWindow(IActivationState? activationState)
         {
             return new Window(new AppShell()) {
-                Title = "Client Records Desktop App"
+                Title = "Registro de Clientes"
             };
         }
     }
